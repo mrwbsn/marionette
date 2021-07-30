@@ -1,39 +1,45 @@
 package marionette
 
 import (
-	"fmt"
 	"log"
-	"time"
 
 	"github.com/go-vgo/robotgo"
 )
 
 func GoGardening() {
+	DoGardening()
+}
+
+func DoGardening() {
 	for {
-		police(MatchTemplate{Threshold: 0.80})
-		gather(MatchTemplate{Threshold: 0.88})
+		// t := time.Now().Format("150405")
+
+		isPolice := police(MatchTemplate{Threshold: 0.80})
+		if !isPolice {
+			gather(MatchTemplate{Threshold: 0.85})
+		} else {
+			// TODO: solve captcha
+			break
+		}
+
 	}
+
 }
 
 func gather(mt MatchTemplate) {
 	g, _ := mt.Find("./assets/gather.png")
 	if g.X != 0 {
-		robotgo.MoveMouse(900, 374)
-		time.Sleep(1800 * time.Millisecond)
-		for i := 0; i < 15; i++ {
-			time.Sleep(70 * time.Millisecond)
+		robotgo.MoveMouse(857, 302)
+		robotgo.MilliSleep(1500)
+		for i := 0; i < 50; i++ {
 			robotgo.MouseClick("left", false)
+			robotgo.MilliSleep(10)
 			log.Println("gathering..")
 		}
 	}
-
 }
 
-func police(mt MatchTemplate) {
+func police(mt MatchTemplate) bool {
 	p, _ := mt.Find("./assets/police.png")
-	if p.X != 0 {
-		time.Sleep(10 * time.Second)
-		fmt.Println("Police!")
-	}
-
+	return p.X != 0
 }

@@ -8,18 +8,10 @@ import (
 	"github.com/mrwbsn/marionette"
 )
 
-// TODO: monitor scale
-// const (
-// 	h = 1440
-// 	w = 900
-// )
-
 func main() {
-
 	var activity int
-	flag.IntVar(&activity, "gardening", 0, "0 = Gardening | 1 = Fishing")
-
-	log.Printf("screen size: %v", marionette.GetScreenSize())
+	flag.IntVar(&activity, "act", 0, "0 = Gardening | 1 = Fishing")
+	flag.Parse()
 
 	time.Sleep(3 * time.Second)
 
@@ -31,5 +23,4 @@ func main() {
 	case 1:
 		marionette.GoFishing()
 	}
-
 }

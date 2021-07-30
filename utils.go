@@ -2,7 +2,10 @@ package marionette
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
 	"math/rand"
+	"os"
 	"time"
 
 	"gocv.io/x/gocv"
@@ -11,7 +14,7 @@ import (
 func RandDuration(min, max int) time.Duration {
 	rand.Seed(time.Now().UnixNano())
 	randInt := rand.Intn(max-min+1) + min
-	dur, _ := time.ParseDuration(fmt.Sprintf("%vs", randInt))
+	dur, _ := time.ParseDuration(fmt.Sprintf("%vms", randInt))
 	return dur
 }
 
@@ -24,4 +27,20 @@ func DebugCV(img gocv.Mat) {
 			break
 		}
 	}
+}
+
+func ReadJSON(filePath string) []byte {
+	jsonFile, err := os.Open(filePath)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer jsonFile.Close()
+
+	jsonVal, err := ioutil.ReadAll(jsonFile)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	return jsonVal
+
 }

@@ -1,0 +1,26 @@
+{
+    "auto" :{
+        "x":878,
+        "y":578
+    },
+    "life":{
+        "x":1088,
+        "y":517
+    },
+    "gardening":{
+        "x":533,
+        "y":539
+    },
+    "shattering_shroom":{
+        "x":266,
+        "y":277
+    },
+    "gardening_place_c":{
+        "x":1026,
+        "y":388
+    },
+    "exit_window":{
+        "x":1026,
+        "y":388
+    }
+}
