@@ -1,6 +1,7 @@
 package marionette
 
 import (
+	"encoding/csv"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -42,5 +43,17 @@ func ReadJSON(filePath string) []byte {
 	}
 
 	return jsonVal
+}
 
+func ReadCSV(filePath string) [][]string {
+	f, err := os.Open(filePath)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer f.Close()
+	r, err := csv.NewReader(f).ReadAll()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return r
 }

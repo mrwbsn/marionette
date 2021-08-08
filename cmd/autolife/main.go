@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"log"
 	"time"
 
@@ -9,14 +8,10 @@ import (
 )
 
 func main() {
-	var activity int
-	flag.IntVar(&activity, "act", 0, "0 = Gardening | 1 = Fishing")
-	flag.Parse()
-
+	log.Println("bot start!")
 	time.Sleep(3 * time.Second)
 
-	log.Println("bot start!")
-
+	activity := 1
 	switch activity {
 	case 0:
 		marionette.GoGardening()

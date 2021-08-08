@@ -28,7 +28,7 @@ func main() {
 			log.Fatal(err)
 		}
 		gocv.CvtColor(img, &img, gocv.ColorRGBAToBGR)
-		gocv.CvtColor(img, &img, gocv.ColorBGRToHSVFull)
+		gocv.CvtColor(img, &img, gocv.ColorBGRToHSV)
 		thresholded := gocv.NewMat()
 		gocv.InRangeWithScalar(img,
 			gocv.Scalar{Val1: getPosFloat(lh), Val2: getPosFloat(ls), Val3: getPosFloat(lv)},
