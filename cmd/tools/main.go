@@ -7,10 +7,10 @@ import (
 )
 
 func main() {
-	for i := 0; i < 200; i++ {
-		fmt.Println(GetCorByCoor(1122, 519))
-	}
-	// fmt.Println(GetColorByMouse())
+	//for i := 0; i < 200; i++ {
+	//	fmt.Println(GetCorByCoor(1122, 519))
+	//}
+	fmt.Println(GetColorByMouse())
 }
 
 func GetCorByCoor(x, y int) string {

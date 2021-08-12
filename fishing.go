@@ -1,16 +1,16 @@
 package marionette
 
 import (
-	"fmt"
 	"log"
-	"strconv"
+	"strings"
 
 	"github.com/go-vgo/robotgo"
 )
 
 func GoFishing() {
-	cx, cy, cc := checkDisplay(FindDisplay(501))
-	rx, ry, rc := checkDisplay(FindDisplay(502))
+	cx, cy, cc := Get(Find(501))
+	rx, ry, rc := Get(Find(502))
+	ex, ey, ec := Get(Find(503))
 	event := 0
 
 	for {
@@ -21,30 +21,13 @@ func GoFishing() {
 
 		if event == 1 {
 			reel(rx, ry, rc)
+			if emptyBait(ex, ey, ec) {
+				break
+			}
 			event = 0
 		}
 	}
 
-}
-
-func checkDisplay(d *Display) (int, int, string) {
-	var x, y int
-	var c string
-	var err error
-	if d.Label != "" {
-		x, err = strconv.Atoi(d.X)
-		if err != nil {
-			log.Fatalln(err)
-		}
-
-		y, err = strconv.Atoi(d.Y)
-		if err != nil {
-			log.Fatalln(err)
-		}
-
-		c = d.Color
-	}
-	return x, y, c
 }
 
 func cast(x, y int, c string) {
@@ -57,10 +40,16 @@ func cast(x, y int, c string) {
 
 func reel(x, y int, c string) {
 	mc := robotgo.GetMouseColor()
-	fmt.Println(mc)
-	if mc == "b8ea67" {
+	if strings.HasPrefix(mc, "b") {
 		robotgo.MouseClick("left", false)
 		log.Println("reel..")
 		robotgo.Sleep(5)
 	}
+}
+
+func emptyBait(x, y int, c string) bool {
+	robotgo.Move(x, y)
+	mc := robotgo.GetMouseColor()
+	return mc == c
+
 }
