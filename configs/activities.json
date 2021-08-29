@@ -1,5 +1,5 @@
 {
-        "gardening": false,
-        "fishing": true,
+        "gardening": true,
+        "fishing": false,
         "afk":false
 }

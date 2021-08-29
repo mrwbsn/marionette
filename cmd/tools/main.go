@@ -7,15 +7,14 @@ import (
 )
 
 func main() {
-	//for i := 0; i < 200; i++ {
-	//	fmt.Println(GetCorByCoor(1122, 519))
-	//}
-	fmt.Println(GetColorByMouse())
+	// for i := 0; i < 200; i++ {
+	// 	fmt.Println(GetCorByCoor(1125, 525))
+	// }
+	fmt.Println(GetColorByCoor(1175, 20))
 }
 
-func GetCorByCoor(x, y int) string {
-	robotgo.MoveMouse(x, y)
-	c := robotgo.GetMouseColor()
+func GetColorByCoor(x, y int) string {
+	c := robotgo.GetPixelColor(x, y)
 	return fmt.Sprintf("%v,%v,%v", x, y, c)
 }
 

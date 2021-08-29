@@ -31,25 +31,32 @@ func GoFishing() {
 }
 
 func cast(x, y int, c string) {
-	robotgo.Move(x, y)
-	if robotgo.GetMouseColor() == c {
-		robotgo.MouseClick("left", false)
-		log.Println("casting..")
+	for {
+		pc := robotgo.GetPixelColor(x, y)
+		if strings.HasPrefix(pc, c) {
+			robotgo.Move(x, y)
+			robotgo.MouseClick("left", false)
+			log.Println("casting..")
+			break
+		}
 	}
 }
 
 func reel(x, y int, c string) {
-	mc := robotgo.GetMouseColor()
-	if strings.HasPrefix(mc, "b") {
-		robotgo.MouseClick("left", false)
-		log.Println("reel..")
-		robotgo.Sleep(5)
+	for {
+
+		pc := robotgo.GetPixelColor(x, y)
+		if strings.HasPrefix(pc, c) {
+			robotgo.Move(x, y)
+			robotgo.MouseClick("left", false)
+			log.Println("reel..")
+			robotgo.Sleep(5)
+			break
+		}
+
 	}
 }
 
 func emptyBait(x, y int, c string) bool {
-	robotgo.Move(x, y)
-	mc := robotgo.GetMouseColor()
-	return mc == c
-
+	return robotgo.GetPixelColor(x, y) == c
 }
