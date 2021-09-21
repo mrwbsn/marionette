@@ -1,8 +1,8 @@
 key,label,x,y,color
-101,weather_rain,1175,20,aae7ff
-102,weather_day,1175,20,e9c74c
-103,weather_night,1175,20,754f65
-201,gardening_gather,848,302,7
-501,fishing_cast,1125,516,f
-502,fishing_reel,1125,525,d
-503,fishing_empty_bait,929,693,fef8f2
+101,weather_rain,1651,30,aae7ff
+102,weather_day,1651,30,ffe142
+103,weather_night,1651,30,464c9e
+201,gardening_gather,1195,421,e
+500,fishing_cast,1586,726,f
+501,fishing_reel,1574,731,c
+503,fishing_empty_bait,1307,973,f

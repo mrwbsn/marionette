@@ -7,10 +7,13 @@ import (
 )
 
 func main() {
-	// for i := 0; i < 200; i++ {
-	// 	fmt.Println(GetCorByCoor(1125, 525))
-	// }
-	fmt.Println(GetColorByCoor(1175, 20))
+	// x, y := 1585, 725
+	// robotgo.MoveMouse(x, y)
+	// robotgo.Sleep(5)
+	// robotgo.Click()
+
+	fmt.Println(GetColorByCoor(1651, 30))
+
 }
 
 func GetColorByCoor(x, y int) string {
@@ -19,6 +22,7 @@ func GetColorByCoor(x, y int) string {
 }
 
 func GetColorByMouse() string {
+	// robotgo.Sleep(3)
 	c := robotgo.GetMouseColor()
 	x, y := robotgo.GetMousePos()
 	return fmt.Sprintf("%v,%v,%v", x, y, c)

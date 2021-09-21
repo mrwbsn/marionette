@@ -1,6 +1,7 @@
 package marionette
 
 import (
+	"fmt"
 	"log"
 	"strings"
 
@@ -8,12 +9,14 @@ import (
 )
 
 func GoFishing() {
-	cx, cy, cc := Get(Find(501))
-	rx, ry, rc := Get(Find(502))
-	ex, ey, ec := Get(Find(503))
+	log.Println("Go fishing!")
+	cx, cy, cc := Get(Find(500))
+	rx, ry, rc := Get(Find(501))
+	ex, ey, ec := Get(Find(502))
 	event := 0
 
 	for {
+		fmt.Println(event)
 		if event == 0 {
 			cast(cx, cy, cc)
 			event = 1
@@ -33,27 +36,28 @@ func GoFishing() {
 func cast(x, y int, c string) {
 	for {
 		pc := robotgo.GetPixelColor(x, y)
+		fmt.Printf("cast: %v\n", pc)
 		if strings.HasPrefix(pc, c) {
 			robotgo.Move(x, y)
 			robotgo.MouseClick("left", false)
 			log.Println("casting..")
 			break
 		}
+		robotgo.MilliSleep(250)
 	}
 }
 
 func reel(x, y int, c string) {
 	for {
-
 		pc := robotgo.GetPixelColor(x, y)
-		if strings.HasPrefix(pc, c) {
+		fmt.Printf("reel: %v\n", pc)
+		if strings.HasPrefix(pc, c) || strings.HasPrefix(pc, "a") {
 			robotgo.Move(x, y)
 			robotgo.MouseClick("left", false)
 			log.Println("reel..")
-			robotgo.Sleep(5)
 			break
 		}
-
+		robotgo.MilliSleep(250)
 	}
 }
 
