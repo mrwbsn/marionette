@@ -12,7 +12,11 @@ func main() {
 	// robotgo.Sleep(5)
 	// robotgo.Click()
 
-	fmt.Println(GetColorByCoor(1651, 30))
+	for {
+		fmt.Println(GetColorByCoor(900, 347))
+	}
+
+	// robotgo.MoveMouse()
 
 }
 

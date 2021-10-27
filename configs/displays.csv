@@ -1,8 +1,13 @@
 key,label,x,y,color
-101,weather_rain,1651,30,aae7ff
-102,weather_day,1651,30,ffe142
-103,weather_night,1651,30,464c9e
-201,gardening_gather,1195,421,e
+100,weather_rain,1651,30,aae7ff
+101,weather_day,1651,30,ffe142
+102,weather_night,1651,30,464c9e
+200,gardening_gather,1195,421,e
+201,police_captcha,1195,421,e7e7eb
+202,police_captcha_answered,1051,735,7c98df
+203,gathering,809,724,d
 500,fishing_cast,1586,726,f
 501,fishing_reel,1574,731,c
 503,fishing_empty_bait,1307,973,f
+600,quest,59,353,d8b7c0
+601,pathfinding,900,347,e

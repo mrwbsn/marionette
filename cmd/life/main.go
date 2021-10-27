@@ -17,5 +17,7 @@ func main() {
 		marionette.GoGardening()
 	case 1:
 		marionette.GoFishing()
+	case 2:
+		marionette.GoCOC()
 	}
 }

@@ -8,32 +8,30 @@ import (
 	"github.com/go-vgo/robotgo"
 )
 
+var event uint = 0
+
 func GoFishing() {
 	log.Println("Go fishing!")
-	cx, cy, cc := Get(Find(500))
-	rx, ry, rc := Get(Find(501))
-	ex, ey, ec := Get(Find(502))
-	event := 0
 
 	for {
-		fmt.Println(event)
 		if event == 0 {
-			cast(cx, cy, cc)
+			cast()
 			event = 1
 		}
 
 		if event == 1 {
-			reel(rx, ry, rc)
-			if emptyBait(ex, ey, ec) {
+			reel()
+			robotgo.Sleep(1)
+			if emptyBait() {
 				break
 			}
 			event = 0
 		}
 	}
-
 }
 
-func cast(x, y int, c string) {
+func cast() {
+	x, y, c := Get(Find(500))
 	for {
 		pc := robotgo.GetPixelColor(x, y)
 		fmt.Printf("cast: %v\n", pc)
@@ -47,11 +45,12 @@ func cast(x, y int, c string) {
 	}
 }
 
-func reel(x, y int, c string) {
+func reel() {
+	x, y, c := Get(Find(501))
 	for {
 		pc := robotgo.GetPixelColor(x, y)
 		fmt.Printf("reel: %v\n", pc)
-		if strings.HasPrefix(pc, c) || strings.HasPrefix(pc, "a") {
+		if strings.HasPrefix(pc, c) {
 			robotgo.Move(x, y)
 			robotgo.MouseClick("left", false)
 			log.Println("reel..")
@@ -61,6 +60,7 @@ func reel(x, y int, c string) {
 	}
 }
 
-func emptyBait(x, y int, c string) bool {
+func emptyBait() bool {
+	x, y, c := Get(Find(502))
 	return robotgo.GetPixelColor(x, y) == c
 }
